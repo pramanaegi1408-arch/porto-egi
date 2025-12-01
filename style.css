@@ -1,0 +1,269 @@
+/* ==========================
+   GLOBAL STYLE
+========================== */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+body {
+    background: #4a30aa;
+    color: #fff;
+    scroll-behavior: smooth;
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+.navbar {
+    background: rgba(216, 210, 210, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.logo {
+    color: #7e39e6;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ed1c1c;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #e63946;
+}
+
+.hamburger {
+    display: none;
+    font-size: 2rem;
+    color: #070707;
+    cursor: pointer;
+}
+
+/* ==========================
+   HERO SECTION
+========================== */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero-content span {
+    color: #e63946;
+}
+
+/* ==========================
+   BUTTON STYLE
+========================== */
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: 2px solid #e63946;
+    color: #e63946;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #1c1c1c;
+    color: #fff;
+}
+
+/* ==========================
+   ABOUT & PROJECT SECTION
+========================== */
+.about,
+.projects {
+    padding: 120px 10%;
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-container img {
+    width: 250px;
+    border-radius: 15px;
+}
+
+/* ==========================
+   PROJECT GRID
+========================== */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-card {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.project-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+/* ==========================
+   CONTACT SECTION
+========================== */
+.contact {
+    padding: 120px 10%;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #060505;
+}
+
+.contact p {
+    color: #ccc;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+    gap: 15px;
+}
+
+.contact input,
+.contact textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #e63946;
+    background: #f0eaea;
+    color: #fff;
+    outline: none;
+    transition: 0.3s;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+    border-color: #fff;
+}
+
+.contact button {
+    align-self: center;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+footer {
+    text-align: center;
+    padding: 40px 0;
+    background: #130707;
+    margin-top: 60px;
+}
+
+/* ==========================
+   RESPONSIVE DESIGN
+========================== */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #1b1919;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .about-container {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .about-container img {
+        width: 200px;
+    }
+
+    .project-card {
+        margin: 0 auto;
+    }
+}
+
+/* Sosial Media Links */
+.social-links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.social-links a {
+    color: #d11726;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid #edeaea;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    background: #0f0f0f;
+    color: #fff;
+}
