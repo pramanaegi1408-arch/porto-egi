@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Layout</title>
+<style>
+
+/* CSS Dasar */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Gaya Blok Umum */
+div {
+    /* box-sizing penting agar border tidak menambah lebar/tinggi */
+    box-sizing: border-box;
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* 1. HEADER */
+.header {
+    width: 100%;
+    height: 60px;
+}
+
+/* Kontainer untuk area di bawah Header */
+.main-content-area {
+    /* Clear float secara internal */
+    overflow: auto;
+}
+
+/* 2. SIDEBAR */
+.sidebar {
+    float: left;
+    width: 25%; /* Perkiraan lebar visual Sidebar */
+    height: 400px; /* Tinggi total Sidebar */
+}
+
+/* 3. Area Konten Kanan (Top, Content, Right) */
+.right-area {
+    float: left;
+    width: 75%; /* Sisa lebar */
+    height: 400px;
+    padding: 0;
+    border: none; /* Hapus border pada kontainer ini */
+}
+
+/* 4. TOP */
+.top {
+    width: 100%;
+    height: 80px; /* Perkiraan tinggi visual Top */
+}
+
+/* Sub-Kontainer untuk Content dan Right (di bawah Top) */
+.content-right-wrapper {
+    overflow: auto;
+    padding: 0;
+    border: none;
+    /* Tinggi sisa: 400px – 80px = 320px */
+    height: calc(400px - 80px);
+}
+
+/* 5. CONTENT (Menggunakan properti dari kode Anda) */
+.content {
+    float: left; /* Harus float agar bisa berdampingan dengan Right */
+    width: 65%; /* Perkiraan lebar visual Content */
+    height: 100%;
+
+    /* Properti yang ada di kode gambar Anda: */
+    border: 1px solid red;
+    background-color: lightgray;
+}
+
+/* 6. RIGHT */
+.right {
+    float: right;
+    width: 35%; /* Sisa lebar */
+    height: 100%;
+}
+
+/* 7. FOOTER (Menggunakan properti dari kode gambar Anda) */
+.footer {
+    clear: both; /* WAJIB: Agar di bawah semua float */
+    width: 100%;
+    border: 1px solid #000000;
+    background-color: orange;
+    height: 50px;
+    text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">Header</div>
+
+<div class="main-content-area">
+    <div class="sidebar">Sidebar</div>
+
+    <div class="right-area">
+        <div class="top">Top</div>
+
+        <div class="content-right-wrapper">
+            <div class="content">Content</div>
+            <div class="right">Right</div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">Footer</div>
+
+</body>
+</html>

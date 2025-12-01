@@ -1,0 +1,81 @@
+/* CSS Dasar */
+Body {
+    Margin: 0;
+    Font-family: Arial, sans-serif;
+}
+
+/* Gaya Blok Umum */
+Div {
+    Box-sizing: border-box;
+    Border: 1px solid #000;
+    Padding: 10px;
+    Text-align: center;
+    Font-size: 14px;
+}
+
+/* 1. HEADER */
+.header {
+    Width: 100%;
+    Height: 60px;
+}
+
+/* Kontainer untuk area di bawah Header */
+.main-content-area {
+    Overflow: auto;
+}
+
+/* 2. SIDEBAR */
+.sidebar {
+    Float: left;
+    Width: 25%;
+    Height: 400px;
+}
+
+/* 3. Area Konten Kanan */
+.right-area {
+    Float: left;
+    Width: 75%;
+    Height: 400px;
+    Padding: 0;
+    Border: none;
+}
+
+/* 4. TOP */
+.top {
+    Width: 100%;
+    Height: 80px;
+}
+
+/* Wrapper Content + Right */
+.content-right-wrapper {
+    Overflow: auto;
+    Padding: 0;
+    Border: none;
+    Height: calc(400px – 80px);
+}
+
+/* 5. CONTENT */
+.content {
+    Float: left;
+    Width: 65%;
+    Height: 100%;
+    Border: 1px solid red;
+    Background-color: lightgray;
+}
+
+/* 6. RIGHT */
+.right {
+    Float: right;
+    Width: 35%;
+    Height: 100%;
+}
+
+/* 7. FOOTER */
+.footer {
+    Clear: both;
+    Width: 100%;
+    Border: 1px solid #000000;
+    Background-color: orange;
+    Height: 50px;
+    Text-align: center;
+}

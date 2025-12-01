@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Egi Travel Wisata Indonesia</title>
+  <style>
+    *{box-sizing:border-box}
+    body{font-family:Segoe UI, Roboto, Arial, sans-serif;margin:0;background:#f7f9fb;color:#1f2937}
+    table.layout{width:100%;border-collapse:collapse}
+    header, footer{background:linear-gradient(90deg,#0ea5a4,#06b6d4);color:white;padding:18px}
+    header h1{margin:0;font-size:1.6rem}
+    nav a{color:white;text-decoration:none;padding:8px 12px;display:inline-block}
+    nav a:hover{background:rgba(255,255,255,0.12);border-radius:6px}
+
+    .content-table{width:100%;border-collapse:collapse}
+    .sidebar{vertical-align:top;padding:16px;width:260px;background:#fff;border-right:1px solid #e6eef3}
+    .main{vertical-align:top;padding:16px}
+    .card{background:white;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,0.06);margin-bottom:12px}
+
+    .dest-table{width:100%;border-collapse:collapse}
+    .dest-table td{padding:10px;vertical-align:top;border-bottom:1px dashed #e6eef3}
+    .thumb{width:160px;height:100px;object-fit:cover;border-radius:8px}
+
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+    .btn-primary{background:#06b6d4;color:white}
+    .btn-outline{background:transparent;border:1px solid #06b6d4;color:#06b6d4}
+
+    .modal{position:fixed;inset:0;background:rgba(3,7,18,0.5);display:none;align-items:center;justify-content:center}
+    .modal .box{background:white;padding:18px;border-radius:10px;max-width:720px;width:96%}
+
+    @media (max-width:800px){
+      .sidebar{display:none}
+      .thumb{width:120px;height:80px}
+      header h1{font-size:1.2rem}
+    }
+
+    footer{font-size:0.9rem;text-align:center}
+
+    .form-row{margin-bottom:10px}
+    input[type=text],input[type=email],textarea{width:100%;padding:8px;border:1px solid #cfe9ef;border-radius:6px}
+  </style>
+</head>
+<body>
+  <header>
+    <table class="layout"><tr>
+      <td><h1>Egi Travel Wisata Indonesia</h1>
+        <nav style="margin-top:8px">
+          <a href="#home">Home</a>
+          <a href="#destinasi">Destinasi</a>
+          <a href="#paket">Paket</a>
+          <a href="#kontak">Kontak</a>
+        </nav>
+      </td>
+      <td style="text-align:right"> 
+        <button class="btn btn-outline" onclick="openModal('about')">Tentang</button>
+        <button class="btn btn-primary" onclick="document.getElementById('kontak').scrollIntoView({behavior:'smooth'})">Hubungi</button>
+      </td>
+    </tr></table>
+  </header>
+
+  <table class="content-table">
+    <tr>
+      <td class="sidebar">
+        <div class="card">
+          <h3>Filter & Cari</h3>
+          <input id="search" type="text" placeholder="Cari destinasi..." oninput="filterDest()">
+        </div>
+        <div class="card">
+          <h4>Kategori</h4>
+          <table><tr><td><button class="btn btn-outline" onclick="filterBy('semua')">Semua</button></td><td><button class="btn" onclick="filterBy('alam')">Alam</button></td></tr>
+          <tr><td><button class="btn" onclick="filterBy('budaya')">Budaya</button></td><td><button class="btn" onclick="filterBy('kuliner')">Kuliner</button></td></tr></table>
+        </div>
+        <div class="card">
+          <h4>Langganan</h4>
+          <p>Masukkan email untuk menerima promo.</p>
+          <input id="emailsub" type="email" placeholder="email@contoh.com">
+          <div style="margin-top:8px"><button class="btn btn-primary" onclick="subscribe()">Daftar</button></div>
+        </div>
+      </td>
+
+      <td class="main">
+        <section id="home" class="card">
+          <h2>Selamat datang di Website Egi Travel Wisata Indonesia</h2>
+          <p>Indonesia punya banyak destinasi yang cocok untuk semua jenis wisata dari pantai sampai budaya tradisional.</p>
+        </section>
+
+        <section id="destinasi" class="card">
+          <h2>Destinasi Populer</h2>
+          <table class="dest-table" id="destTable">
+            <tr data-kategori="alam">
+              <td style="width:170px"><img class="thumb" src="pantai kuta.jpg" alt="Pantai"></td>
+              <td>
+                <h3>Pantai Kuta, Bali</h3>
+                <p>Pasir putih, sunset menawan, cocok untuk surfing dan bersantai. <button class="btn btn-outline" onclick="openDetail('Pantai Kuta, Bali','Pantai eksotis di Bali, cocok untuk keluarga dan peselancar.','https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop&crop=faces')">Lihat</button></p>
+              </td>
+            </tr>
+            <tr data-kategori="budaya">
+              <td><img class="thumb" src="candi borobudur.jpg"></td>
+              <td>
+                <h3>Candi Borobudur, Jawa Tengah</h3>
+                <p>Candi Buddha terbesar di dunia dan suasana saat matahari terbit sangat magis. <button class="btn btn-outline" onclick="openDetail('Candi Borobudur','Candi bersejarah, sering dikunjungi untuk sunrise tour.','https://images.unsplash.com/photo-1549880185-87e6d1c4832b?q=80&w=1200&auto=format&fit=crop&crop=faces')">Lihat</button></p>
+              </td>
+            </tr>
+            <tr data-kategori="alam">
+              <td><img class="thumb" src="rinjani.jpg" alt="Rinjani"></td>
+              <td>
+                <h3>Gunung Rinjani, Lombok</h3>
+                <p>Untuk pendaki dan pecinta pemandangan alam. Terdapat danau kawah yang indah. <button class="btn btn-outline" onclick="openDetail('Gunung Rinjani','Trekking menantang dan pemandangan kaldera yang menakjubkan.','https://images.unsplash.com/photo-1526778548025-fa2f459cd5c0?q=80&w=1200&auto=format&fit=crop&crop=faces')">Lihat</button></p>
+              </td>
+            </tr>
+            <tr data-kategori="budaya">
+              <td><img class="thumb" src="mandalika.jpg"></td>
+              <td>
+                <h3>Mandalika, Nusa Tenggara Barat</h3>
+                <p>Mandalika merupakan destinasi wisata super prioritas di Indonesia yang menawarkan kombinasi antara wisata bahari, olahraga, budaya, dan alam. Terletak di Lombok, Nusa Tenggara Barat. <button class="btn btn-outline" onclick="openDetail('Candi Borobudur','Candi bersejarah, sering dikunjungi untuk sunrise tour.','https://images.unsplash.com/photo-1549880185-87e6d1c4832b?q=80&w=1200&auto=format&fit=crop&crop=faces')">Lihat</button></p>
+              </td>
+            </tr>
+            <tr data-kategori="kuliner">
+              <td><img class="thumb" src="gudeg jogja.jpg" alt="Gudeg"></td>
+              <td>
+                <h3>Gudeg Yogyakarta</h3>
+                <p>Makanan khas Yogyakarta manis dan gurih. Rekomendasi warung tradisional. <button class="btn btn-outline" onclick="openDetail('Gudeg Yogyakarta','Kuliner khas Yogyakarta, wajib coba saat jalan-jalan.','https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop&crop=faces')">Lihat</button></p>
+              </td>
+              <tr data-kategori="kuliner">
+              <td><img class="thumb" src="sate Lilit.jpg" alt="Sate Lilit"></td>
+              <td>
+                <h3>Sate Lilit</h3>
+                <p>Makanan Khas Bali Sate yang terbuat dari daging cincang. <button class="btn btn-outline" onclick="openDetail('Gudeg Yogyakarta','Kuliner khas Yogyakarta, wajib coba saat jalan-jalan.','https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop&crop=faces')">Lihat</button></p>
+              </td>
+            </tr>
+          </table>
+        </section>
+
+        <section id="paket" class="card">
+          <h2>Paket Rekomendasi</h2>
+          <table style="width:100%;border-collapse:collapse">
+            <tr>
+              <td style="width:60%"><strong>Paket Hemat 3 Hari</strong><br>Destinasi: Kuta + Ubud</td>
+              <td style="width:40%"><button class="btn btn-primary" onclick="pilihPaket('Paket Hemat 3 Hari')">Pilih Paket</button></td>
+            </tr>
+            <tr>
+              <td><strong>Paket Budaya 4 Hari</strong><br>Destinasi: Yogyakarta + Borobudur</td>
+              <td><button class="btn btn-primary" onclick="pilihPaket('Paket Budaya 4 Hari')">Pilih Paket</button></td>
+            </tr>
+            <tr>
+             <td><strong>Paket Budaya 3 Hari</strong><br>Destinasi: Nusa Tenggara Barat + Mandalika</td>
+              <td><button class="btn btn-primary" onclick="pilihPaket('Paket Budaya 4 Hari')">Pilih Paket</button></td>
+          </table>
+        </section>
+
+        <section id="kontak" class="card">
+          <h2>Kontak & Booking</h2>
+          <form onsubmit="event.preventDefault();sendBooking()">
+            <div class="form-row"><label>Nama</label><input id="nama" type="text" required></div>
+            <div class="form-row"><label>Email</label><input id="email" type="email" required></div>
+            <div class="form-row"><label>Pesan</label><textarea id="pesan" rows="4" required></textarea></div>
+            <div><button class="btn btn-primary" type="submit">Kirim</button></div>
+          </form>
+        </section>
+
+        <footer class="card">
+          <p>© 2025 Promosi Wisata Indonesia — menurut saya. Developed with love.</p>
+        </footer>
+      </td>
+    </tr>
+  </table>
+
+  <div id="modal" class="modal" onclick="if(event.target.id==='modal')closeModal()">
+    <div class="box">
+      <h3 id="m-title">Judul</h3>
+      <img id="m-img" src="" alt="foto" style="width:100%;max-height:360px;object-fit:cover;border-radius:8px;margin-bottom:8px">
+      <p id="m-desc"></p>
+      <div style="text-align:right"><button class="btn btn-outline" onclick="closeModal()">Tutup</button></div>
+    </div>
+  </div>
+
+  <script>
+    function openDetail(title,desc,img){
+      document.getElementById('m-title').textContent = title;
+      document.getElementById('m-desc').textContent = desc;
+      document.getElementById('m-img').src = img;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal(){document.getElementById('modal').style.display='none'}
+    function openModal(which){
+      if(which==='about'){
+        openDetail('Tentang', 'Situs demo promosi wisata ini menampilkan beberapa destinasi populer di Indonesia. Menurut saya, konten ini mudah disesuaikan untuk kebutuhan kampanye.', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop&crop=faces')
+      }
+    }
+
+    function filterDest(){
+      const q = document.getElementById('search').value.toLowerCase();
+      const rows = document.querySelectorAll('#destTable tr');
+      rows.forEach(r=>{
+        const text = r.innerText.toLowerCase();
+        r.style.display = text.includes(q)?'table-row':'none';
+      })
+    }
+    function filterBy(cat){
+      const rows = document.querySelectorAll('#destTable tr');
+      rows.forEach(r=>{
+        if(cat==='semua') r.style.display='table-row';
+        else r.style.display = r.dataset.kategori===cat? 'table-row' : 'none';
+      })
+    }
+
+    function subscribe(){
+      const e = document.getElementById('emailsub').value;
+      if(!e) return alert('Masukkan email terlebih dahulu');
+      alert('Terima kasih, email ' + e + ' telah didaftarkan untuk promo.');
+      document.getElementById('emailsub').value='';
+    }
+
+    function sendBooking(){
+      const nama = document.getElementById('nama').value;
+      const email = document.getElementById('email').value;
+      const pesan = document.getElementById('pesan').value;
+      console.log({nama,email,pesan});
+      alert('Terima kasih, ' + nama + '. Pesan Anda telah dikirim. Kami akan hubungi lewat ' + email);
+      document.getElementById('nama').value='';
+      document.getElementById('email').value='';
+      document.getElementById('pesan').value='';
+    }
+
+    function pilihPaket(namaPaket) {
+      alert('Kamu memilih ' + namaPaket + '. Silakan isi form kontak untuk booking.');
+      document.getElementById('kontak').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
